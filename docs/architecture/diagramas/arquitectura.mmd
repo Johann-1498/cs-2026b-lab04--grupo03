@@ -1,0 +1,26 @@
+flowchart TB
+    VEC["Vecino"]
+    REC["Reciclador"]
+    MUN["Administrador Municipal"]
+    subgraph APP["EcoRecicla AQP – Monolito modular (Django)"]
+        API["Capa de presentación: API REST + PWA"]
+        M1["Solicitudes y Registro"]
+        M2["Gestión de Rutas"]
+        M3["Puntos y Canjes"]
+        M4["Reportes y Métricas"]
+        M5["Distritos y Cobertura"]
+    end
+    INF["Capa de infraestructura: ORM y adaptadores"]
+    DB[("PostgreSQL\n(Esquemas modulares)")]
+    EXT["Servicios externos\n(Notificaciones / Incentivos)"]
+    VEC & REC & MUN --> API
+    API --> M1 & M2 & M3 & M4 & M5
+    M1 & M2 & M3 & M4 & M5 --> INF
+    INF --> DB
+    INF --> EXT
+    classDef mod fill:#E8F5E9,stroke:#2E7D32,color:#000
+    classDef ext fill:#F2F2F2,stroke:#7F7F7F,color:#000,stroke-dasharray: 4 3
+    classDef usr fill:#FDEDEC,stroke:#C8310E,color:#000
+    class M1,M2,M3,M4,M5 mod
+    class EXT ext
+    class VEC,REC,MUN usr

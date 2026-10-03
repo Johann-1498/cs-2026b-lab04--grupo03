@@ -1,0 +1,34 @@
+digraph "EcoRecicla AQP - Vista de despliegue" {
+	graph [bgcolor=white fontcolor="#2D3436" fontname="Sans-Serif" fontsize=20 label="EcoRecicla AQP - Vista de despliegue" nodesep=0.60 pad=0.3 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	e805ccececd84735830cac2172f400d5 [label="Vecinos y
+Municipalidad" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/client\users.png" shape=none]
+	"1bc12fdef585451f9ede2bc700339ee2" [label="PWA Reciclador
+(Celular 3G)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/generic/device\mobile.png" shape=none]
+	subgraph "cluster_Servidor Privado Virtual (VPS)" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Servidor Privado Virtual (VPS)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"8e1db917eb404f7d955d861c632d5884" [label="Nginx
+(Reverse Proxy / HTTPS)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/network\nginx.png" shape=none]
+		subgraph "cluster_Monolito Modular" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Monolito Modular" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"13aabf000db04f74b5a3b72f79763510" [label="Django App
+(5 Módulos)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/programming/framework\django.png" shape=none]
+			"43175344672b463b8d7241548ce8999a" [label="Celery Worker
+(Reportes asíncronos)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/queue\celery.png" shape=none]
+			"1da47fa7af7e47f1aa3995142c171c75" [label="Redis
+(Caché y Broker)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/inmemory\redis.png" shape=none]
+		}
+		"98affca1a4a44048bccaf23c129015cf" [label="PostgreSQL
+(Base de datos)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/database\postgresql.png" shape=none]
+		"3a710cd3ec8b4e47a732a3d8a13797df" [label="Monitoreo
+(Prometheus / Logs)" height=2.3 image="C:\Users\johan\AppData\Roaming\Python\Python314\site-packages\resources/onprem/monitoring\grafana.png" shape=none]
+	}
+	e805ccececd84735830cac2172f400d5 -> "8e1db917eb404f7d955d861c632d5884" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"1bc12fdef585451f9ede2bc700339ee2" -> "8e1db917eb404f7d955d861c632d5884" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"8e1db917eb404f7d955d861c632d5884" -> "13aabf000db04f74b5a3b72f79763510" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"13aabf000db04f74b5a3b72f79763510" -> "98affca1a4a44048bccaf23c129015cf" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"13aabf000db04f74b5a3b72f79763510" -> "1da47fa7af7e47f1aa3995142c171c75" [label="encola tareas" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"1da47fa7af7e47f1aa3995142c171c75" -> "43175344672b463b8d7241548ce8999a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"13aabf000db04f74b5a3b72f79763510" -> "3a710cd3ec8b4e47a732a3d8a13797df" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dotted]
+}

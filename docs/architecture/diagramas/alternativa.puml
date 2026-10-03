@@ -1,0 +1,28 @@
+@startuml
+  skinparam dpi 220
+  skinparam componentStyle rectangle
+  skinparam defaultFontName Arial
+  skinparam backgroundColor white
+  title Alternativa A (descartada): EcoRecicla con Monolito en Capas Tradicional
+  
+  actor "Vecino / Reciclador" as U
+  node "Servidor VPS (Nginx + Gunicorn)" {
+    [Capa de Presentación\n(Vistas Django MVT)] as Pres
+    [Capa de Lógica de Negocio\n(Servicios acoplados)] as Biz
+    [Capa de Datos\n(ORM Modelos compartidos)] as Data
+  }
+  database "PostgreSQL\n(Base de datos unificada)" as DB
+  
+  U --> Pres
+  Pres --> Biz
+  Biz --> Data
+  Data --> DB
+
+  note bottom of Biz
+    Alternativa descartada (Puntaje en matriz: 3.90 / 5.00).
+    Aunque ofrece alta velocidad inicial de desarrollo, su alto acoplamiento 
+    horizontal viola el driver crítico de modificabilidad (QA-01), haciendo que 
+    incorporar nuevos distritos o reglas de puntos exceda los 2 días-persona 
+    por efectos colaterales en los modelos compartidos del ORM.
+  end note
+@enduml
