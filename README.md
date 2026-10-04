@@ -5,9 +5,9 @@ Construcción de Software - EPIS-UNSA - 2026-B - Grupo 03
 
 | Nombre | Rol en el laboratorio |
 |---|---|
-| Estudiante 1 | Redactor de Drivers y ADRs |
-| Estudiante 2 | Diagramador (Mermaid, PlantUML, Python Diagrams) |
-| Estudiante 3 | Verificador de IA y Bitácora |
+| Caceres Ruiz, Johann Andre | Redactor de Drivers y ADRs |
+| Velarde Saldaña, Jhossep Fabritzio | Diagramador (Mermaid, PlantUML, Python Diagrams) |
+| Coaquira Suyo, Gabriela Dayana | Verificador de IA y Bitácora |
 
 ## Caso
 
